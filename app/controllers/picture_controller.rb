@@ -1,7 +1,5 @@
 class PictureController < ApplicationController
-
-	before_action :set_picture, only: [:show, :update, :destroy]
-	
+	# Retrieve pictures from https://pixabay.com/api/docs/  The pugs were funny.
 	def index
 		@pictures = Picture.all
 		render json: @pictures
@@ -45,9 +43,4 @@ class PictureController < ApplicationController
 	def picture_params
 		params.require(:picture).permit(:url, :name, :description)
 	end
-
-	def set_picture
-		@picture = Picture.find_by(id: params[:id])
-	end
-
 end
