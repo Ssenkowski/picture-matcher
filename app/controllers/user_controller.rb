@@ -1,5 +1,6 @@
 class UserController < ApplicationController
   def index
+    @users = User.all
   end
 
 
@@ -10,16 +11,31 @@ class UserController < ApplicationController
   end
 
   def show
+    render json: @user
   end
 
   def update
+    if @user.update(user_params)
+			render json: @user
+		else
+		  render json: { message: @user.errors }, status: 301
+		end
   end
 
   def destroy
+    if @user.destroy
+			render status: 204
+		else
+			render json: { message: "Unable to remove user"}, status: 400
+		end
   end
 
   private
   def user_params
     params.require(:user).permit(:username)
   end
+
+  def set_user
+		@user = User.find_by(id: params[:id])
+	end
 end
