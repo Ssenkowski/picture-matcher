@@ -7,13 +7,24 @@ class ScoreboardController < ApplicationController
   end
 
   def show
+    render json: @scoreboard
   end
+  
+	def update
+		if @scoreboard.update(scoreboard_params)
+			render json: @scoreboard
+		else
+		  render json: { message: @scoreboard.errors }, status: 301
+		end
 
-  def update
-  end
+	end
 
-  def destroy
-  end
+	def destroy
+		if @scoreboard.destroy
+			render status: 204
+		else
+			render json: { message: "Unable to remove scoreboard"}, status: 400
+		end
 
   private
   def scoreboard_params
