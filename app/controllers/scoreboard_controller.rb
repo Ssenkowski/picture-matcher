@@ -3,6 +3,7 @@ class ScoreboardController < ApplicationController
   end
 
   def create
+    scoreboard = Scoreboard.create(scoreboard_params)
   end
 
   def show

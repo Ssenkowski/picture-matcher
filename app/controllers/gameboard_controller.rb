@@ -3,7 +3,9 @@ class GameboardController < ApplicationController
   end
 
   def create
+    gameboard = Gameboard.create(gameboard_params)
   end
+
 
   def show
     
