@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_11_183620) do
+ActiveRecord::Schema.define(version: 2019_08_22_184119) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -34,16 +34,18 @@ ActiveRecord::Schema.define(version: 2019_08_11_183620) do
   end
 
   create_table "gameboards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "backgroud"
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "background"
   end
 
   create_table "pictures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "background"
+    t.integer "background_id"
   end
 
   create_table "scoreboards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
