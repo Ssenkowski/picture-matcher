@@ -8,15 +8,24 @@ class GameboardController < ApplicationController
 
 
   def show
-    
+    render json: @gameboard
   end
+  
+	def update
+		if @gameboard.update(gameboard_params)
+			render json: @gameboard
+		else
+		  render json: { message: @gameboard.errors }, status: 301
+		end
 
-  def update
-  end
+	end
 
-  def destroy
-  end
-
+	def destroy
+		if @gameboard.destroy
+			render status: 204
+		else
+			render json: { message: "Unable to remove gameboard"}, status: 400
+		end
 
   private
   def gameboard_params
